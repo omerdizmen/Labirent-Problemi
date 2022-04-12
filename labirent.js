@@ -5,7 +5,7 @@ const map =
     [0, "start", 0 ,0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0]
 
 ]
 const nodes = new Map();
@@ -38,7 +38,7 @@ const allanswer = [];
 const simplinx = function dfs(currentPos, visited = new Map(), map = [], step = 1, answer = [])
 {
 
-
+  step = +step;
   const currentVisited = new Map(visited);
 
   let strY = String(currentPos[0]);
@@ -76,12 +76,14 @@ const simplinx = function dfs(currentPos, visited = new Map(), map = [], step = 
 
 
       if (currentMap[Y][X] === 1 && [...currentVisited.values()].every(val => val === true)){
-            console.log("cevap !!!");
-            map.forEach(element =>
-                 {
+            console.log("--- output !!! ---");
+
+            const output = map.map(row => row.map(col => col.toString().padStart(2, "0")))
+            
+            output.forEach(element =>{
                 console.log(element);
                 });
-            
+
                 answer.push(...[map]);
                 allanswer.push(...[currentMap]);
             
@@ -102,5 +104,3 @@ const simplinx = function dfs(currentPos, visited = new Map(), map = [], step = 
 const selectedMap = start[2]
 
 let answers = simplinx(start, nodes, selectedMap);
-
-
